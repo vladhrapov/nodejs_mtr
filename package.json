@@ -1,0 +1,34 @@
+{
+  "name": "nodejs_mtr",
+  "version": "1.0.0",
+  "description": "nodejs application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon backend --exec babel-node --presets es2015,stage-2",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladhrapov/nodejs_mtr.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": {
+    "name": "Vladyslav Khrapov",
+    "email": "vlad.hrapov@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladhrapov/nodejs_mtr/issues"
+  },
+  "homepage": "https://github.com/vladhrapov/nodejs_mtr#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "nodemon": "^1.12.0"
+  }
+}
