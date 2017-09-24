@@ -1,6 +1,5 @@
-import csv from "csvtojson";
 import fs from "fs";
-import loader from "csv-load-sync";
+import csv from "csvtojson";
 import { eventEmitter } from "../dirwatcher/DirWatcher";
 
 export default class Importer {
