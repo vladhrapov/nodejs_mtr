@@ -7,7 +7,7 @@ const through2 = require('through2');
 const CombinedStream = require('combined-stream');
 
 // Task 4 Pipe the given file to process.stdout
-function inputOutput(filePath) {
+function inputOutput(filePath = path.join('backend', 'data', 'MOCK_DATA.csv')) {
   console.log('============ inputOutput ============');
 
   fs.createReadStream(filePath)
@@ -31,7 +31,7 @@ function transform() {
 
 // Task 6 convert file from csv to json and output data
 // to process.stdout using the through2 module
-function transformFile(filePath) {
+function transformFile(filePath = path.join('backend', 'data', 'MOCK_DATA.csv')) {
   console.log('============ transformFile ============');
 
   fs.createReadStream(filePath)
@@ -49,8 +49,7 @@ function transformFile(filePath) {
 // to a result file with the same name but .json extension, using the through2 module
 // and fs.createWriteStream
 // There is no such function in the task, so I created one
-const child_process = require("child_process");
-function transformFileToJSON(filePath) {
+function transformFileToJSON(filePath = path.join('backend', 'data', 'MOCK_DATA.csv')) {
   console.log('============ transformFileToJSON ============');
   let data = [];
   const writeStream = fs.createWriteStream(path.join('backend', 'data', 'MOCK_DATA.json'));
@@ -95,12 +94,11 @@ function httpServer() {
 // Add contents of https://www.epam.com/etc/clientlibs/foundation/main.min.fc69c13add6eae57cd247a91c7e26a15.css
 // at the bottom of this big css
 // Output should be saved in the same path and called bundle.css
-function bundleCss() {
+function bundleCss(filesPath = pathpath.join('frontend', 'assets', 'css')) {
   const combinedStream = CombinedStream.create();
 
-  fs.readdir(path.join('frontend', 'assets', 'css'), (err, files) => {
+  fs.readdir(filesPath, (err, files) => {
     files.forEach(file => {
-      console.log(file);
       combinedStream.append(fs.createReadStream(path.join('frontend', 'assets', 'css', file)))
     });
 
@@ -118,11 +116,8 @@ function printHelpMessage() {
 let argv = yargs
   .alias('a', 'action')
   .alias('h', 'help')
-  .option('help', {
-    alias: 's',
-    describe: 'choose a size',
-    choices: ['xs', 's', 'm', 'l', 'xl']
-  })
+  .alias('p', 'path')
+  .option('help')
   .help('help')
   .argv
 
@@ -154,7 +149,7 @@ function main() {
       transformFileToJSON(file);
       return;
     case 'bundle-css':
-      bundleCss();
+      bundleCss(path);
       return;
     default:
       return;
